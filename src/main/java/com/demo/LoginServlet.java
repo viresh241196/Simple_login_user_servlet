@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
         String pwd = request.getParameter("pwd");
         String userID = getServletConfig().getInitParameter("user");
         String password = getServletConfig().getInitParameter("password");
+        if (userID.matches("^[A-Z]{1}[a-z]{2,}$")) {
             if (userID.equals(user) && password.equals(pwd)) {
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("LoginSuccess.jsp").forward(request, response);
@@ -35,5 +36,6 @@ public class LoginServlet extends HttpServlet {
                 out.println("<font color=red>Either user name or password is incorrect</font>");
                 rd.include(request, response);
             }
+        }
     }
 }
